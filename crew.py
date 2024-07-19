@@ -44,7 +44,7 @@ class AgentCrew:
 # cocaine kills corona virus
 # """
 prompt = None
-path = 'fake\cocaine.png'
+path = 'fake\covid.png'
 # path = None  
 
 model = AgentCrew()

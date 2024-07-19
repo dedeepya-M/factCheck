@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
 from langchain.agents import load_tools, initialize_agent
-from langchain_community.chat_models import ChatOpenAI
+# from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew, Process
 from tools import OpenAIImageAnalyzer
 
@@ -48,7 +49,7 @@ class MisinformationDetectionAgent:
         memory=True,
         backstory=(
             "You are an advanced AI developed to assist news agencies by providing concise news reports based on images."
-            "You know nothing about the taks"
+            "You know nothing about generating the news report"
         ),
         tools=[image_analyzer_tool]
         )
@@ -61,7 +62,7 @@ class MisinformationDetectionAgent:
         role="Project Manager",
         goal=(
             "you have to mange the tasks based on input type.If the input is a text direct to text_agent agent .if the input is image path then direct to image_agent "
-            "you should only use the text that is a piece of fact or a news report. You should discard and return None when it is a regular chat text"
+             "IF the image or the message is not related to the factual or news or current affair ignore the message and return None"
             ),
         backstory="You're an experienced project manager, skilled in overseeing complex projects and guiding teams to success. Your role is to coordinate the efforts of the crew members, ensuring that each task is completed on time and to the highest standard. ",
         allow_delegation=True,
